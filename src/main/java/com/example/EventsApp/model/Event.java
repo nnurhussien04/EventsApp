@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.naming.ldap.LdapName;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,7 +44,7 @@ public class Event {
     Staff staff;
 
     @ManyToMany(mappedBy = "events")
-    private Set<User> attendees = new HashSet<>();
+    Set<Customer> attendees = new HashSet<>();
 
 
 

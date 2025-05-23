@@ -1,5 +1,6 @@
 package com.example.EventsApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,12 +13,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
+@Table(name="customer")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Customer {
     @Id
     @GeneratedValue
     @Column
@@ -43,13 +44,14 @@ public class User {
     @Column
     String password;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
-            name = "user_event",
-            joinColumns = @JoinColumn(name = "user_id"),
+            name = "customer_event",
+            joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id"),
             uniqueConstraints = @UniqueConstraint(
-                    columnNames = {"user_id", "event_id"})
+                    columnNames = {"customer_id", "event_id"})
     )
     Set<Event> events = new HashSet<>();
 }
