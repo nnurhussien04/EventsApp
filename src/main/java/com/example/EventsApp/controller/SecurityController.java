@@ -2,8 +2,8 @@ package com.example.EventsApp.controller;
 
 import com.example.EventsApp.model.Customer;
 import com.example.EventsApp.model.Staff;
-import com.example.EventsApp.repository.CustomerRepository;
-import com.example.EventsApp.repository.StaffRepository;
+import com.example.EventsApp.service.EventsAppService;
+import com.example.EventsApp.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private SecurityService securityService;
 
     @Autowired
-    private StaffRepository staffRepository;
+    private EventsAppService eventsAppService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -28,16 +28,14 @@ public class SecurityController {
         return "Hello home";
     }
 
-    @PostMapping("/UserSignup")
+    @PostMapping("/CustomerSignup")
     public Customer CustomerSignUp(@RequestBody Customer customer){
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer);
+        return eventsAppService.addCustomer(customer);
     }
 
     @PostMapping("/StaffSignup")
     public Staff StaffSignUp(@RequestBody Staff staff){
-        staff.setPassword(passwordEncoder.encode(staff.getPassword()));
-        return staffRepository.save(staff);
+        return eventsAppService.addStaff(staff);
     }
 
 

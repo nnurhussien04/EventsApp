@@ -43,6 +43,7 @@ public class Event {
     @JoinColumn(name="staff_id")
     Staff staff;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "events")
     Set<Customer> attendees = new HashSet<>();
 
