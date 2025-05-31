@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="event"
+            type="com.northcoders.eventapp.model.Event"
+            />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="16dp"
+        android:background="#34A853"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                >
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:hint="Name"
+                    android:text="@{event.name}"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+                <TextView
+                    android:id="@+id/descriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameView"
+                    android:hint="Description"
+                    android:text="@{event.description}"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+                <TextView
+                    android:id="@+id/dateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+                    android:text="@{event.date}"
+                    android:hint="Date"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+                <TextView
+                    android:id="@+id/timeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dateView"
+                    android:text="@{event.time}"
+                    android:hint="Time"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+                <TextView
+                    android:id="@+id/locationView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/timeView"
+                    android:text="@{event.location}"
+                    android:hint="Location"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+                <TextView
+                    android:id="@+id/staffView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locationView"
+                    android:text="@{event.completeName}"
+                    android:hint="Staff Name"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#34A853"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
