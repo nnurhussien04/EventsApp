@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.eventapp.model.Event;
 import com.northcoders.eventapp.model.EventRepository;
+import com.northcoders.eventapp.model.Login;
 
 import java.util.List;
 
@@ -21,5 +22,9 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MutableLiveData<List<Event>> getMutableLiveData(){
         return eventRepository.getMutableLiveData();
+    }
+
+    public MutableLiveData<String> getLoginData(Login login){
+        return eventRepository.getLoginData(login);
     }
 }

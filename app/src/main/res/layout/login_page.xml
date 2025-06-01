@@ -1,68 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#34A853"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<layout>
+    <data>
+        <variable
+            name="login"
+            type="com.northcoders.eventapp.model.Login" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Event App"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white"
-        />
+        <variable
+            name="clickHandler"
+            type="com.northcoders.eventapp.ui.login.LoginClickHandlers" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#34A853"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event App"
+            android:textSize="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            />
 
-    <EditText
-        android:id="@+id/usernameBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Username"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-         />
+        <EditText
+            android:id="@+id/usernameBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Username"
+            android:text="@={login.username}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+             />
 
-    <EditText
-        android:id="@+id/passwordBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password"
-        app:layout_constraintTop_toBottomOf="@id/usernameBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        />
+        <EditText
+            android:id="@+id/passwordBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:text="@={login.password}"
+            app:layout_constraintTop_toBottomOf="@id/usernameBox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            />
 
-    <Button
-        android:id="@+id/LoginButton"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/white"
-        android:textColor="#34A853"
-        android:text="Login"
-        app:layout_constraintTop_toBottomOf="@id/passwordBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        />
+        <Button
+            android:id="@+id/LoginButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/white"
+            android:textColor="#34A853"
+            android:text="Login"
+            android:onClick="@{clickHandler.LoginCheck}"
+            app:layout_constraintTop_toBottomOf="@id/passwordBox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            />
+
+        <Button
+            android:id="@+id/signUpbutton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/white"
+            android:textColor="#34A853"
+            android:text="Sign Up"
+            app:layout_constraintTop_toBottomOf="@id/LoginButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            />
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
