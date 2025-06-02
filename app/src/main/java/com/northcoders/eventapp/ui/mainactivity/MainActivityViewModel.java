@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.northcoders.eventapp.model.Customer;
 import com.northcoders.eventapp.model.Event;
 import com.northcoders.eventapp.model.EventRepository;
 import com.northcoders.eventapp.model.Login;
@@ -26,5 +27,9 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> getLoginData(Login login){
         return eventRepository.getLoginData(login);
+    }
+
+    public MutableLiveData<Customer> getCustomerSignup(Customer customer){
+        return eventRepository.CustomerSignUp(customer);
     }
 }

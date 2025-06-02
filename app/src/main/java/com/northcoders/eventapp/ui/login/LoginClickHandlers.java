@@ -9,8 +9,10 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.eventapp.model.Login;
+import com.northcoders.eventapp.ui.homepage.HomepageActivity;
 import com.northcoders.eventapp.ui.mainactivity.MainActivity;
 import com.northcoders.eventapp.ui.mainactivity.MainActivityViewModel;
+import com.northcoders.eventapp.ui.signup.CustomerSignUpActivity;
 
 public class LoginClickHandlers
 {
@@ -32,7 +34,7 @@ public class LoginClickHandlers
             mainActivityViewModel.getLoginData(login).observe((LifecycleOwner) context, result -> {
                 if ("Login Successful".equals(result)) {
                     Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainActivity.class);
+                    Intent intent = new Intent(context, HomepageActivity.class);
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -42,8 +44,8 @@ public class LoginClickHandlers
         }
     }
 
-    /*public void SignUpDisplay(){
-        Intent intent = new Intent(context,);
-        context.startActivity();
-    }*/
+    public void SignUpDisplay(View view){
+        Intent intent = new Intent(context, CustomerSignUpActivity.class);
+        context.startActivity(intent);
+    }
 }

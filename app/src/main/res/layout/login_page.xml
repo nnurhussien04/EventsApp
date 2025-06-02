@@ -81,6 +81,7 @@
             android:backgroundTint="@color/white"
             android:textColor="#34A853"
             android:text="Sign Up"
+            android:onClick="@{clickHandler.SignUpDisplay}"
             app:layout_constraintTop_toBottomOf="@id/LoginButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
