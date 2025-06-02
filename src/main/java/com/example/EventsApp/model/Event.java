@@ -38,7 +38,6 @@ public class Event {
     @Column
     String location;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="staff_id")
     Staff staff;
@@ -46,7 +45,5 @@ public class Event {
     @JsonIgnore
     @ManyToMany(mappedBy = "events")
     Set<Customer> attendees = new HashSet<>();
-
-
 
 }

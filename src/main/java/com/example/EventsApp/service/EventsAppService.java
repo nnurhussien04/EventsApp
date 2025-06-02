@@ -2,6 +2,7 @@ package com.example.EventsApp.service;
 
 import com.example.EventsApp.model.Customer;
 import com.example.EventsApp.model.Event;
+import com.example.EventsApp.model.Login;
 import com.example.EventsApp.model.Staff;
 import com.example.EventsApp.repository.CustomerRepository;
 import com.example.EventsApp.repository.EventRepository;
@@ -31,4 +32,7 @@ public interface EventsAppService{
 
         Staff addStaff(Staff staff);
 
+        String checkCustomerLogin(Login login);
+
+        String checkStaffLogin(Login login);
 }

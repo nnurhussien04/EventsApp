@@ -2,6 +2,7 @@ package com.example.EventsApp.service;
 
 import com.example.EventsApp.model.Customer;
 import com.example.EventsApp.model.Event;
+import com.example.EventsApp.model.Login;
 import com.example.EventsApp.model.Staff;
 import com.example.EventsApp.repository.CustomerRepository;
 import com.example.EventsApp.repository.EventRepository;
@@ -44,6 +45,7 @@ public class EventsAppServiceImpl implements EventsAppService{
         newEvent.setId(event.getId());
         newEvent.setName(event.getName());
         newEvent.setTime(event.getTime());
+        newEvent.setDate(event.getDate());
         newEvent.setDescription(event.getDescription());
         newEvent.setLocation(event.getLocation());
         newEvent.setStaff(event.getStaff());
@@ -76,6 +78,26 @@ public class EventsAppServiceImpl implements EventsAppService{
     public Staff addStaff(Staff staff){
         staff.setPassword(passwordEncoder.encode(staff.getPassword()));
         return staffRepository.save(staff);
+    }
+
+    @Override
+    public String checkCustomerLogin(Login login) {
+        if(customerRepository.findByUsername(login.getUsername()).isPresent()) {
+            var customer = customerRepository.findByUsername(login.getUsername()).get();
+            if(passwordEncoder.matches(login.getPassword(),customer.getPassword()))
+                return "Login Successful";
+        }
+        return "Login Failed";
+    }
+
+    @Override
+    public String checkStaffLogin(Login login) {
+        if(staffRepository.findByUsername(login.getUsername()).isPresent()) {
+            var staff = staffRepository.findByUsername(login.getUsername()).get();
+            if(passwordEncoder.matches(login.getPassword(),staff.getPassword()))
+                return "Login Successful";
+        }
+        return "Login Failed";
     }
 
 

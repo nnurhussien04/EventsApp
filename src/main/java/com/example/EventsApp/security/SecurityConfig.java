@@ -52,8 +52,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> {
-                            auth.requestMatchers("/UserSignup","/StaffSignup").permitAll();
-                            auth.anyRequest().authenticated();
+                            //auth.requestMatchers("/UserSignup","/StaffSignup").permitAll();
+                            auth.anyRequest().permitAll();
                         })
                 .oauth2Login(withDefaults())
                 .formLogin(withDefaults())
