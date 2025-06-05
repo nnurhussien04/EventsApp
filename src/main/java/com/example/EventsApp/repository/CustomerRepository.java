@@ -10,6 +10,4 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer,Long> {
     Optional<Customer> findByUsername(String username);
-    Optional<Customer> findByUsernameAndPassword(String username, String password);
-
 }

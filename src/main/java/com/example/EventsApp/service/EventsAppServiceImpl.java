@@ -9,6 +9,7 @@ import com.example.EventsApp.repository.EventRepository;
 import com.example.EventsApp.repository.StaffRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -98,6 +101,28 @@ public class EventsAppServiceImpl implements EventsAppService{
                 return "Login Successful";
         }
         return "Login Failed";
+    }
+
+    @Override
+    public Staff staffDetails(Login login) {
+        return staffRepository.findByUsername(login.getUsername()).get();
+    }
+
+    @Override
+    public Set<Event> registerCustomerToEvent(Long customerId, Long eventId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        // Add event to the customer’s event set
+        customer.getEvents().add(event);
+
+        // Save the customer to persist the relationship
+        customerRepository.save(customer);
+
+        return customer.getEvents();
     }
 
 

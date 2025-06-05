@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface StaffRepository extends CrudRepository<Staff,Long> {
     Optional<Staff> findByUsername(String username);
-    Optional<Staff> findByUsernameAndPassword(String username, String password);
-
-
 }

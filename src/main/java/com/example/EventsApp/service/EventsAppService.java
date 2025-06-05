@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 
 public interface EventsAppService{
         Event addEvent(Event event);
@@ -35,4 +36,8 @@ public interface EventsAppService{
         String checkCustomerLogin(Login login);
 
         String checkStaffLogin(Login login);
+
+        Staff staffDetails(Login login);
+
+        Set<Event> registerCustomerToEvent(Long customerId, Long eventId);
 }

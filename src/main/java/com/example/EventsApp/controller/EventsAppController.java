@@ -1,5 +1,6 @@
 package com.example.EventsApp.controller;
 
+import com.example.EventsApp.dto.CustomerEventRequest;
 import com.example.EventsApp.model.Event;
 import com.example.EventsApp.service.EventsAppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class EventsAppController {
     @GetMapping("/Event")
     public ResponseEntity<?> listEvent(){
         return new ResponseEntity<>(eventsAppService.displayEvent(),HttpStatus.OK);
+    }
+
+    @PostMapping("/SignToEvent")
+    public ResponseEntity<?> customerEventRegistration(@RequestBody CustomerEventRequest customerEventRequest){
+        return new ResponseEntity<>(eventsAppService.registerCustomerToEvent(customerEventRequest.getCustomerId(), customerEventRequest.getEventId()),HttpStatus.OK);
     }
 
 

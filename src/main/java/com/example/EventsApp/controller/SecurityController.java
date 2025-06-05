@@ -1,5 +1,6 @@
 package com.example.EventsApp.controller;
 
+import com.example.EventsApp.dto.CustomerEventRequest;
 import com.example.EventsApp.model.Customer;
 import com.example.EventsApp.model.Login;
 import com.example.EventsApp.model.Staff;
@@ -47,6 +48,16 @@ public class SecurityController {
     @PostMapping("/StaffLogin")
     public String staffLogin(@RequestBody Login login){
         return eventsAppService.checkStaffLogin(login);
+    }
+
+    @PostMapping("/StaffDetails")
+    public Staff retrieveStaffDetails(@RequestBody Login login){
+        return eventsAppService.staffDetails(login);
+    }
+
+    @PostMapping("/SignInEvent")
+    public void customerEventRegistration(@RequestBody CustomerEventRequest customerEventRequest){
+        eventsAppService.registerCustomerToEvent(customerEventRequest.getCustomerId(), customerEventRequest.getEventId());
     }
 
 
