@@ -193,15 +193,11 @@ public MutableLiveData<Staff> staffRetrieval() {
         updateEvent.enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
-                //Log.d("EditSuccess", "onResponse: " + );
-                Log.d("EditSuccess", "onFailure: " + response.code());
-                Log.d("EditSuccess", "onFailure: " + response.body());
                 Toast.makeText(application.getApplicationContext(),"Event Updated",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Event> call, Throwable t) {
-                Log.d("EditError", "onFailure: " + t.getMessage());
                 Toast.makeText(application.getApplicationContext(),"Event update failed",Toast.LENGTH_SHORT).show();
             }
         });
@@ -219,8 +215,7 @@ public MutableLiveData<Staff> staffRetrieval() {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("DeleteError", "onFailure: " + t.getMessage());
-                Toast.makeText(application.getApplicationContext(),"Event Failed",Toast.LENGTH_SHORT).show();
+               Toast.makeText(application.getApplicationContext(),"Event Failed",Toast.LENGTH_SHORT).show();
             }
         });
     }

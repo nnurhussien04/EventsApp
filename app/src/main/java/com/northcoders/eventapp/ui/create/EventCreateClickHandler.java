@@ -54,11 +54,6 @@ public class EventCreateClickHandler {
             }
         });
 
-        //Log.d("staffError", "createEvent: " + staff.toString());
-        //event.setStaff(staff);
-        //viewModel.getCreateEvent(event);
-        //Intent intent = new Intent(context, HomepageActivity.class);
-        //context.startActivity(intent);
     }
 
 

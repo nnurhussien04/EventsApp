@@ -35,13 +35,10 @@ public class EventDataActivity extends AppCompatActivity implements LifecycleOwn
         setContentView(R.layout.event_data);
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         event = getIntent().getParcelableExtra("EVENT_KEY",Event.class);
-        Log.d("EventReceived", "Staff first name: " + event.getStaff().getFirst_name());
-        Log.d("EventReceived", "Staff last name: " + event.getStaff().getLast_name());
         EventDataClickHandler eventDataClickHandler = new EventDataClickHandler(event,viewModel,this);
         eventDataBinding = DataBindingUtil.setContentView(this,R.layout.event_data);
         eventDataBinding.setEvent(event);
         eventDataBinding.setClickHandler(eventDataClickHandler);
-        Log.d("StaffCheck", "Staff: " + event.getStaff().getFirst_name());
         checkRole();
     }
 

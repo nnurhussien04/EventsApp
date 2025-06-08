@@ -37,7 +37,6 @@ public interface EventAPIService {
     @POST("StaffDetails")
     Call<Staff> staffDetails(@Body Login login);
 
-    @Headers({"Content-Type: application/json"})
     @PUT("Event/{id}")
     Call<Event> updateEvent(@Body Event event,@Path("id") Long id);
 

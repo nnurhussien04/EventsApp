@@ -75,12 +75,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public void onItemClick(int position) {
         Intent intent = new Intent(this, EventDataActivity.class);
         Staff s = events.get(position).getStaff();
-        if (s != null) {
-            Log.d("DEBUG-EVENT", "Staff first name: " + s.getFirst_name());
-            Log.d("DEBUG-EVENT", "Staff last name: " + s.getLast_name());
-        } else {
-            Log.d("DEBUG-EVENT", "Staff is NULL");
-        }
         String identifier = "EVENT_KEY";
         intent.putExtra(identifier,events.get(position));
         startActivity(intent);
