@@ -10,6 +10,7 @@ import com.northcoders.eventapp.model.Customer;
 import com.northcoders.eventapp.model.Event;
 import com.northcoders.eventapp.model.EventRepository;
 import com.northcoders.eventapp.model.Login;
+import com.northcoders.eventapp.model.Staff;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-        this.eventRepository = new EventRepository(application);
+        this.eventRepository = EventRepository.getInstance(application);
     }
 
     public MutableLiveData<List<Event>> getMutableLiveData(){
@@ -31,5 +32,20 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MutableLiveData<Customer> getCustomerSignup(Customer customer){
         return eventRepository.CustomerSignUp(customer);
+    }
+
+    public MutableLiveData<Event> getCreateEvent(Event event){
+        return eventRepository.CreateEvent(event);
+    }
+    public MutableLiveData<Staff> getStaffData(){
+        return eventRepository.staffRetrieval();
+    }
+
+    public void getUpdateEvent(Event event,Long id){
+        eventRepository.editEvent(event,id);
+    }
+
+    public void getDeleteEvent(Event event){
+        eventRepository.deleteEvent(event.getId());
     }
 }

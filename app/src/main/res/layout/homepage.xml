@@ -72,6 +72,8 @@
             android:layout_height="50dp"
             android:backgroundTint="@color/white"
             android:textColor="#34A853"
+            android:enabled="false"
+            android:onClick="@{clickHandler::createPage}"
             android:text="Add Event"
             app:layout_constraintTop_toBottomOf="@id/eventButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,12 +82,12 @@
             />
 
         <Button
-            android:id="@+id/DeleteEvent"
+            android:id="@+id/settingsButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/white"
             android:textColor="#34A853"
-            android:text="Delete Event"
+            android:text="Settings"
             app:layout_constraintTop_toBottomOf="@id/LogoutButton"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"

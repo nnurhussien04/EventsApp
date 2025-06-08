@@ -1,5 +1,6 @@
 package com.northcoders.eventapp.ui.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,11 +20,13 @@ import com.northcoders.eventapp.databinding.EventItemBinding;
 import com.northcoders.eventapp.databinding.EventPageBinding;
 import com.northcoders.eventapp.model.Event;
 import com.northcoders.eventapp.model.EventRepository;
+import com.northcoders.eventapp.model.Staff;
+import com.northcoders.eventapp.ui.data.EventDataActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
     private RecyclerView recyclerView;
     private ArrayList<Event> events;
     private EventAdapter eventAdapter;
@@ -36,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.event_page);
-        EventRepository eventRepository = new EventRepository(this.getApplication());
+        //EventRepository eventRepository = new EventRepository(this.getApplication());
+        EventRepository eventRepository = EventRepository.getInstance(this.getApplication());
         eventRepository.getMutableLiveData();
         eventPageBinding = DataBindingUtil.setContentView(this,R.layout.event_page);
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayInRecyclerView(){
         recyclerView = eventPageBinding.recyclerView;
-        eventAdapter = new EventAdapter(events,this);
+        eventAdapter = new EventAdapter(events,this,this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(eventAdapter);
@@ -67,4 +71,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, EventDataActivity.class);
+        Staff s = events.get(position).getStaff();
+        if (s != null) {
+            Log.d("DEBUG-EVENT", "Staff first name: " + s.getFirst_name());
+            Log.d("DEBUG-EVENT", "Staff last name: " + s.getLast_name());
+        } else {
+            Log.d("DEBUG-EVENT", "Staff is NULL");
+        }
+        String identifier = "EVENT_KEY";
+        intent.putExtra(identifier,events.get(position));
+        startActivity(intent);
+    }
 }

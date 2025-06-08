@@ -37,7 +37,7 @@ public class LoginClickHandlers
                     Intent intent = new Intent(context, HomepageActivity.class);
                     context.startActivity(intent);
                 } else {
-                    Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             });
 

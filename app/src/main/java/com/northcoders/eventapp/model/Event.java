@@ -1,17 +1,23 @@
 package com.northcoders.eventapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.northcoders.eventapp.BR;
 
-public class Event extends BaseObservable {
+public class Event extends BaseObservable implements Parcelable {
+    Long id;
     String name;
     String description;
     String date;
     String time;
     String location;
     Staff staff;
+
     public Event(String name, String description, String date, String time, String location, Staff staff) {
         this.name = name;
         this.description = description;
@@ -23,6 +29,32 @@ public class Event extends BaseObservable {
 
     public Event() {
     }
+
+    protected Event(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        name = in.readString();
+        description = in.readString();
+        date = in.readString();
+        time = in.readString();
+        location = in.readString();
+        staff = in.readParcelable(Staff.class.getClassLoader());
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     @Bindable
     public String getName() {
@@ -88,4 +120,35 @@ public class Event extends BaseObservable {
     public String getCompleteName(){
         return staff.first_name + " " + staff.last_name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(id);
+        }
+        parcel.writeString(name);
+        parcel.writeString(description);
+        parcel.writeString(date);
+        parcel.writeString(time);
+        parcel.writeString(location);
+        parcel.writeParcelable(staff, i);
+    }
+
+
 }
