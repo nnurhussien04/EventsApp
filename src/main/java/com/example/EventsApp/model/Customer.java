@@ -45,7 +45,7 @@ public class Customer {
     String password;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "customer_event",
             joinColumns = @JoinColumn(name = "customer_id"),
@@ -54,4 +54,17 @@ public class Customer {
                     columnNames = {"customer_id", "event_id"})
     )
     Set<Event> events = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+        Event other = (Event) o;
+        return id != null && id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

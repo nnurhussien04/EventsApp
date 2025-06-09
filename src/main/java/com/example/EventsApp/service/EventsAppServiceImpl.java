@@ -7,7 +7,9 @@ import com.example.EventsApp.model.Staff;
 import com.example.EventsApp.repository.CustomerRepository;
 import com.example.EventsApp.repository.EventRepository;
 import com.example.EventsApp.repository.StaffRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
@@ -17,10 +19,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -42,26 +43,36 @@ public class EventsAppServiceImpl implements EventsAppService{
         return eventRepository.save(event);
     }
 
-    @Override
-    public Event editEvent(Event event){
-        Event newEvent = new Event();
-        newEvent.setId(event.getId());
-        newEvent.setName(event.getName());
-        newEvent.setTime(event.getTime());
-        newEvent.setDate(event.getDate());
-        newEvent.setDescription(event.getDescription());
-        newEvent.setLocation(event.getLocation());
-        newEvent.setStaff(event.getStaff());
-        return eventRepository.save(newEvent);
-    }
 
     @Override
-    public boolean removeEvent(Event event){
-        if(eventRepository.existsById(event.getId())){
-            eventRepository.delete(event);
-            return true;
+    public Event editEvent(Event event,Long id) {
+        Optional<Event> optionalEvent = eventRepository.findById(id);
+        if (optionalEvent.isPresent()) {
+            Event existingEvent = optionalEvent.get();
+            existingEvent.setName(event.getName());
+            existingEvent.setTime(event.getTime());
+            existingEvent.setDate(event.getDate());
+            existingEvent.setDescription(event.getDescription());
+            existingEvent.setLocation(event.getLocation());
+            existingEvent.setStaff(event.getStaff());
+            return eventRepository.save(existingEvent);
+        } else {
+            throw new RuntimeException("Event not found with id: " + id);
         }
-        return false;
+    }
+
+
+    @Override
+    public void removeEvent(Long id){
+        if(eventRepository.existsById(id)){
+            Event event = eventRepository.findById(id).get();
+            for (Customer customer : event.getAttendees()) {
+                customer.getEvents().remove(event);
+                customerRepository.save(customer);
+            }
+            eventRepository.delete(event);
+        }
+        return;
     }
 
     @Override
@@ -109,21 +120,32 @@ public class EventsAppServiceImpl implements EventsAppService{
     }
 
     @Override
-    public Set<Event> registerCustomerToEvent(Long customerId, Long eventId) {
+    public Customer customerDetails(Login login){return customerRepository.findByUsername(login.getUsername()).get();}
+
+
+
+    @Override
+    @Transactional
+    public Customer registerCustomerToEvent(Long customerId, Long eventId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
 
-        Event event = eventRepository.findById(eventId)
+        Event event = eventRepository.findEventById(eventId)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
 
-        // Add event to the customer’s event set
+        Hibernate.initialize(customer.getEvents());
+
+        // Copy and update the set to avoid modifying PersistentSet directly
         customer.getEvents().add(event);
-
-        // Save the customer to persist the relationship
         customerRepository.save(customer);
-
-        return customer.getEvents();
+        //customerRepository.save(customer);
+        return customer; // or updatedEvents
     }
+
+
+
+
+
 
 
 }

@@ -55,10 +55,12 @@ public class SecurityController {
         return eventsAppService.staffDetails(login);
     }
 
-    @PostMapping("/SignInEvent")
-    public void customerEventRegistration(@RequestBody CustomerEventRequest customerEventRequest){
-        eventsAppService.registerCustomerToEvent(customerEventRequest.getCustomerId(), customerEventRequest.getEventId());
+    @PostMapping("/CustomerDetails")
+    public Customer retrieveCustomerDetails(@RequestBody Login login){
+        return eventsAppService.customerDetails(login);
     }
+
+
 
 
 

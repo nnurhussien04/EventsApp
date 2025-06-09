@@ -43,7 +43,20 @@ public class Event {
     Staff staff;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "events")
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
     Set<Customer> attendees = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+        Event other = (Event) o;
+        return id != null && id.equals(other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
 }

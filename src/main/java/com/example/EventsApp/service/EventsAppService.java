@@ -23,9 +23,9 @@ import java.util.Set;
 public interface EventsAppService{
         Event addEvent(Event event);
 
-        Event editEvent(Event event);
+        Event editEvent(Event event,Long id);
 
-        boolean removeEvent(Event event);
+        void removeEvent(Long id);
 
         ArrayList<Event> displayEvent();
 
@@ -39,5 +39,7 @@ public interface EventsAppService{
 
         Staff staffDetails(Login login);
 
-        Set<Event> registerCustomerToEvent(Long customerId, Long eventId);
+        Customer customerDetails(Login login);
+
+        Customer registerCustomerToEvent(Long customerId, Long eventId);
 }

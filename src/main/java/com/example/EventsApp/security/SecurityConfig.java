@@ -55,7 +55,6 @@ public class SecurityConfig {
                             //auth.requestMatchers("/UserSignup","/StaffSignup").permitAll();
                             auth.anyRequest().permitAll();
                         })
-                .oauth2Login(withDefaults())
                 .formLogin(withDefaults())
                 .build();
     }

@@ -18,14 +18,14 @@ public class EventsAppController {
         return new ResponseEntity<>(eventsAppService.addEvent(event),HttpStatus.CREATED);
     }
 
-    @PutMapping("/Event")
-    public ResponseEntity<?> editEvent(@RequestBody Event event){
-        return new ResponseEntity<>(eventsAppService.editEvent(event),HttpStatus.ACCEPTED);
+    @PutMapping("/Event/{id}")
+    public ResponseEntity<?> editEvent(@RequestBody Event event,@PathVariable Long id){
+        return new ResponseEntity<>(eventsAppService.editEvent(event,id),HttpStatus.OK);
     }
 
-    @DeleteMapping("/Event")
-    public ResponseEntity<?> deleteEvent(@RequestBody Event event){
-        return new ResponseEntity<>(eventsAppService.removeEvent(event),HttpStatus.OK);
+    @DeleteMapping("/Event/{id}")
+    public void deleteEvent(@PathVariable Long id){
+        eventsAppService.removeEvent(id);
     }
 
     @GetMapping("/Event")
@@ -33,10 +33,11 @@ public class EventsAppController {
         return new ResponseEntity<>(eventsAppService.displayEvent(),HttpStatus.OK);
     }
 
-    @PostMapping("/SignToEvent")
-    public ResponseEntity<?> customerEventRegistration(@RequestBody CustomerEventRequest customerEventRequest){
-        return new ResponseEntity<>(eventsAppService.registerCustomerToEvent(customerEventRequest.getCustomerId(), customerEventRequest.getEventId()),HttpStatus.OK);
+    @PostMapping("/SignToEvent/{customerId}/{eventId}")
+    public ResponseEntity<?> customerEventRegistration(@PathVariable Long customerId, @PathVariable Long eventId) {
+        return new ResponseEntity<>(eventsAppService.registerCustomerToEvent(customerId, eventId), HttpStatus.OK);
     }
+
 
 
 
