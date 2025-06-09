@@ -43,6 +43,15 @@ public interface EventAPIService {
     @DELETE("Event/{id}")
     Call<Void> deleteEvent(@Path("id") Long id);
 
+    @POST("CustomerDetails")
+    Call<Customer> customerDetails(@Body Login login);
+
+    @POST("SignToEvent/{customerID}/{eventID}")
+    Call<Customer> signToEvents(@Path("customerID") Long customerID,@Path("eventID") Long eventID);
+
+
+
+
 
 
 

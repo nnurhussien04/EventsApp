@@ -5,13 +5,18 @@ import androidx.databinding.Bindable;
 
 import com.northcoders.eventapp.BR;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer extends BaseObservable {
+    Long id;
     String first_name;
     String last_name;
     String birth_date;
     String emailAddress;
     String username;
     String password;
+    Set<Event> events = new HashSet<>();
 
     public Customer(String first_name, String last_name, String birth_date, String emailAddress, String username, String password) {
         this.first_name = first_name;
@@ -83,5 +88,17 @@ public class Customer extends BaseObservable {
     public void setPassword(String password) {
         this.password = password;
         notifyPropertyChanged(BR.password);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 }

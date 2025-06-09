@@ -189,6 +189,7 @@
             android:ems="10"
             android:backgroundTint="@color/white"
             android:inputType="text"
+            android:focusable="false"
             app:layout_constraintTop_toBottomOf="@+id/locationBox"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="40dp"

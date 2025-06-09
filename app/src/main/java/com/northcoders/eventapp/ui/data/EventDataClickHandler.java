@@ -2,9 +2,13 @@ package com.northcoders.eventapp.ui.data;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModel;
 
 import com.northcoders.eventapp.model.Event;
 import com.northcoders.eventapp.ui.homepage.HomepageActivity;
@@ -46,6 +50,28 @@ public class EventDataClickHandler {
         viewModel.getDeleteEvent(event);
         Intent intent = new Intent(context, HomepageActivity.class);
         context.startActivity(intent);
+    }
+
+    public void AddToCalendar(View view){
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        intent.setType("vnd.android.cursor.item/event");
+
+        intent.putExtra(CalendarContract.Events.TITLE,event.getName());
+        intent.putExtra(CalendarContract.Events.DESCRIPTION,event.getDescription());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION,event.getLocation());
+        intent.setPackage("com.google.android.calendar");
+        context.startActivity(intent);
+    }
+
+    public void SignUpToEvent(View view){
+        viewModel.getCustomerData().observe((LifecycleOwner) context, customer -> {
+            if(customer!=null){
+                Log.d("CustomerData", "checkRole: " + customer.getId());
+                viewModel.getCustomerSignUpEvent(customer.getId(), event.getId());
+            }else{
+                return;
+            }
+        });
     }
 
 }

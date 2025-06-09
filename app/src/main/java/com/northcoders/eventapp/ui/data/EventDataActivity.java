@@ -1,5 +1,6 @@
 package com.northcoders.eventapp.ui.data;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +43,7 @@ public class EventDataActivity extends AppCompatActivity implements LifecycleOwn
         checkRole();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public void checkRole(){
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         viewModel.getStaffData().observe(this, staff -> {
@@ -64,6 +66,21 @@ public class EventDataActivity extends AppCompatActivity implements LifecycleOwn
                 staffBox.setFocusable(false);
                 editButton.setText("Calendar");
                 deleteButton.setText("Sign Up");
+                event = getIntent().getParcelableExtra("EVENT_KEY",Event.class);
+                EventDataClickHandler eventDataClickHandler = new EventDataClickHandler(event,viewModel,this);
+                editButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        eventDataClickHandler.AddToCalendar(view);
+                    }
+                });
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        eventDataClickHandler.SignUpToEvent(view);
+                    }
+                });
                 return;
             }
         });

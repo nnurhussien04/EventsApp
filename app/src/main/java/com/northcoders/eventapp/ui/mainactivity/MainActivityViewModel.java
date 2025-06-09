@@ -41,11 +41,19 @@ public class MainActivityViewModel extends AndroidViewModel {
         return eventRepository.staffRetrieval();
     }
 
+    public MutableLiveData<Customer> getCustomerData(){
+        return eventRepository.customerRetrieval();
+    }
+
     public void getUpdateEvent(Event event,Long id){
         eventRepository.editEvent(event,id);
     }
 
     public void getDeleteEvent(Event event){
         eventRepository.deleteEvent(event.getId());
+    }
+
+    public MutableLiveData<Customer> getCustomerSignUpEvent(Long customerID,Long eventID){
+        return eventRepository.customerSignUpEvent(customerID, eventID);
     }
 }

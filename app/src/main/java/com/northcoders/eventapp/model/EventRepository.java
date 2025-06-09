@@ -27,7 +27,9 @@ public class EventRepository {
     private MutableLiveData<Event> eventMutableLiveData = new MutableLiveData<>();
     private static EventRepository instance;
     private final Application application;
+    private MutableLiveData<Customer> customerDetailsMutableLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<Customer> customerEventMutableLiveData = new MutableLiveData<>();
     public EventRepository(Application application) {
         this.application = application;
     }
@@ -218,6 +220,57 @@ public MutableLiveData<Staff> staffRetrieval() {
                Toast.makeText(application.getApplicationContext(),"Event Failed",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+        public MutableLiveData<Customer> customerRetrieval() {
+        EventAPIService service = RetrofitInstance.getService();
+        if(login == null){
+            Toast.makeText(application.getApplicationContext(),"Null Value",Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        Call<Customer> call = service.customerDetails(login);
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                Toast.makeText(application.getApplicationContext(), "Connection Success", Toast.LENGTH_SHORT).show();
+                if(response.body()!=null && response.isSuccessful()){
+                    customerDetailsMutableLiveData.setValue(response.body());
+                }
+                else{
+                    customerDetailsMutableLiveData.setValue(null);
+                    Toast.makeText(application.getApplicationContext(), "No Response", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                Log.d("customerErrorRepo", "onFailure: " + t.getMessage());
+                Toast.makeText(application.getApplicationContext(), "Connection Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return customerDetailsMutableLiveData;
+    }
+
+    public MutableLiveData<Customer> customerSignUpEvent(Long customerID, Long eventID){
+        EventAPIService service = RetrofitInstance.getService();
+        Call<Customer> customerEvents = service.signToEvents(customerID,eventID);
+        customerEvents.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                 if(response.isSuccessful() && response != null){
+                     Toast.makeText(application.getApplicationContext(),"Sign Up Successful",Toast.LENGTH_SHORT).show();
+                     customerEventMutableLiveData.setValue(response.body());
+                }else{
+                     Toast.makeText(application.getApplicationContext(),"Sign Up Failed",Toast.LENGTH_SHORT).show();
+                 }
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(),"Sign Up Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+        return customerEventMutableLiveData;
     }
 
 
