@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
 
-    private static String BASE_URL = "http://172.26.126.229:8080/";
+    private static String BASE_URL = "https://eventsapp-utqb.onrender.com/";
     private static Retrofit retrofitInstance = null;
 
     private static Gson gson = new GsonBuilder()
