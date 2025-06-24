@@ -25,6 +25,8 @@ How to run backend application on IDE:
 2.	Ensure Java 17 or later is installed (Java 21 is recommended), and all Maven dependencies are downloaded using mvn clean install.
 3.	Run the backend using an IDE (e.g., IntelliJ, Eclipse) or preferably a VM — make sure it works by running this link on your browser or Postman: http://localhost:8080/Event
 4.	If the link displays JSON and some key-value pairs name, id, description, etc., this means the API is working.
+
+   
 How to run backend application on Maven:
     1.	Download the backend branch from GitHub and unzip the download
     2.	Download Maven on your device using this link: https://maven.apache.org/download.cgi
