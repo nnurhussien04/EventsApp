@@ -1,4 +1,4 @@
-#EventsApp
+**EventsApp**
 
 This is an app where users are able to see events in their area planned by the community business, and if they are interested, they can sign up for the event and add it to their calendar. The staff members are able to create, edit, and delete events if they are no longer running. The idea of this app is to allow community members to be aware of events that are taking place in their town and for staff to display and manage the events they are planning to host.
 
