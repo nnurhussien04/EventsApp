@@ -1,6 +1,0 @@
-#surefire_0
-#Tue Jun 24 01:58:23 BST 2025
-basedir=/home/nebil/events-app/EventsApp
-junit.platform.listeners.uid.tracking.enabled=true
-junit.platform.listeners.uid.tracking.output.dir=/home/nebil/events-app/EventsApp/target/test-ids
-localRepository=/home/nebil/.m2/repository

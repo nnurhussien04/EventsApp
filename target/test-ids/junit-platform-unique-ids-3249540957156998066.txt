@@ -1,1 +1,0 @@
-[engine:junit-jupiter]/[class:com.example.EventsApp.EventsAppApplicationTests]/[method:contextLoads()]

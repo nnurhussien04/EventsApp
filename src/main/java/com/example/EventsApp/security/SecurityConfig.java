@@ -53,6 +53,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth -> {
                             //auth.requestMatchers("/UserSignup","/StaffSignup").permitAll();
+                            auth.requestMatchers(
+                                        "/swagger-ui/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui.html"
+                            ).permitAll();
                             auth.anyRequest().permitAll();
                         })
                 .formLogin(withDefaults())

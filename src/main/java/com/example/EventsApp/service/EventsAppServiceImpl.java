@@ -120,7 +120,9 @@ public class EventsAppServiceImpl implements EventsAppService{
     }
 
     @Override
-    public Customer customerDetails(Login login){return customerRepository.findByUsername(login.getUsername()).get();}
+    public Customer customerDetails(Login login){
+        return customerRepository.findByUsername(login.getUsername()).get();
+    }
 
 
 
