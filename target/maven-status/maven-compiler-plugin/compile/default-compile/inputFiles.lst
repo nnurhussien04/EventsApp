@@ -1,0 +1,15 @@
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/EventsAppApplication.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/controller/EventsAppController.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/controller/SecurityController.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/dto/CustomerEventRequest.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/model/Customer.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/model/Event.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/model/Login.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/model/Staff.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/repository/CustomerRepository.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/repository/EventRepository.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/repository/StaffRepository.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/security/SecurityConfig.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/service/EventsAppService.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/service/EventsAppServiceImpl.java
+/home/nebil/events-app/EventsApp/src/main/java/com/example/EventsApp/service/SecurityService.java
