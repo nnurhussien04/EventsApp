@@ -27,8 +27,8 @@ public class SecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Customer> customer = customerRepository.findByUsername(username);
-        Optional<Staff> staff = staffRepository.findByUsername(username);
+        Optional<Customer> customer = customerRepository.findByUsername(username); //Retrieves the customer from repository
+        Optional<Staff> staff = staffRepository.findByUsername(username); //Retrieves
         if(customer.isPresent()){
             var userObj = customer.get();
             return User.builder()

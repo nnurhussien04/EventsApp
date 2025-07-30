@@ -1,6 +1,5 @@
 package com.example.EventsApp.controller;
 
-import com.example.EventsApp.dto.CustomerEventRequest;
 import com.example.EventsApp.model.Customer;
 import com.example.EventsApp.model.Login;
 import com.example.EventsApp.model.Staff;

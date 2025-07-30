@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface EventRepository extends CrudRepository<Event,Long> {
-    @Query("SELECT e FROM Event e WHERE e.id = :id")
-    Optional<Event> findEventById(@Param("id") Long id);
+    @Query("SELECT e FROM Event e WHERE e.id = :id") //SQL query which checks if event with given id exists
+    Optional<Event> findEventById(@Param("id") Long id); //Returns an Optional of the event matching the id, if found
 
 }
 

@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface StaffRepository extends CrudRepository<Staff,Long> {
-    Optional<Staff> findByUsername(String username);
+    Optional<Staff> findByUsername(String username); //Returns an Optional of the staff matching the username, if found
 }
